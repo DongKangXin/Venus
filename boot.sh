@@ -7,12 +7,12 @@ case "$1" in
     mvn clean
     mvn install
     cd ./target
-    nohup java -jar $(jar_name) &
+    nohup java -jar "$(jar_name)" &
     tail -f nohup.out
     ;;
 
   stop)
-    cur_pid=grep $(jar_name)|grep -v grep|awk '{print $2}'
+    cur_pid=grep "$(jar_name)"|grep -v grep|awk '{print $2}'
     kill -9 $(cur_pid)
     ehco "$(jar_name) stop success"
     ;;
