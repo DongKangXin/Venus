@@ -6,15 +6,14 @@ case "$1" in
   start)
     mvn clean
     mvn install
-    cd ./target
-    nohup java -jar Venus-*.*-SNAPSHOT.jar &
-    tail -f nohup.out
+    nohup java -jar ./target/Venus-1.0-SNAPSHOT.jar >> /var/log/jenkins/venus.out &
+    tail -f /var/log/jenkins/venus.out
     ;;
 
   stop)
-    cur_pid=grep|Venus-*.*-SNAPSHOT.jar|grep -v grep|awk '{print $2}'
-    kill -9 $(cur_pid)
-    ehco "Venus stop success"
+    cur_pid=`ps -ef|grep Venus-1.0-SNAPSHOT.jar|grep -v grep|awk '{print $2}'`
+    kill -9 ${cur_pid}
+    echo "Venus stop success"
     ;;
 
   restart)
