@@ -7,6 +7,7 @@ case "$1" in
     mvn clean
     mvn install
     nohup java -jar ./target/Venus-1.0-SNAPSHOT.jar >> /var/log/jenkins/venus.out &
+    sleep 1
     tail -f /var/log/jenkins/venus.out
     ;;
 
@@ -18,7 +19,7 @@ case "$1" in
 
   restart)
     $0 stop
-    sleep 3
+    sleep 2
     $0 start
     ;;
 
