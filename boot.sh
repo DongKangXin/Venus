@@ -1,12 +1,12 @@
 #!/bin/bash
-#获取当前路径
-cd ./target
+
 jar_name="Venus-*.*-SNAPSHOT.jar"
 case "$1" in
 
   start)
     mvn clean
     mvn install
+    cd ./target
     nohup java -jar $(jar_name) &
     tail -f nohup.out
     ;;
