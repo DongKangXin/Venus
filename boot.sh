@@ -6,9 +6,9 @@ case "$1" in
   start)
     mvn clean
     mvn install
-    nohup java -jar ./target/Venus-1.0-SNAPSHOT.jar >> /var/log/venus.out &
+    nohup java -jar ./target/Venus-1.0-SNAPSHOT.jar >> /var/log/jenkins/venus.out &
     sleep 1
-    tail -f /var/log/venus.out
+    tail -f /var/log/jenkins/venus.out
     ;;
 
   stop)
